@@ -1,0 +1,63 @@
+#-----------------------------------------------------------#
+#                     ABOUT THIS PLUGIN                     #
+#-----------------------------------------------------------#
+
+# BuyPermissions by the Glare Masters
+# BuyPermissions on GitHub: https://github.com/darbyjack/BuyPermissions
+
+#-----------------------------------------------------------#
+#                           Tutorial                        #
+#-----------------------------------------------------------#
+
+# This is a simple guide on how to create permissions to sell
+
+# Under the "commands" section, you put in  your item. For example, we'll do something like fly.
+
+# So, it'd look like:
+
+#     fly:
+#        name: "&7Fly"
+#        perm: fly.permission
+#        cost: 20.0
+#        description: "You can totally use this to fly around and kill mobs!"
+
+# The "perm" is where you put the permission node that will be given to the player
+# The "cost" is how much it cost for the user to buy that permission
+
+# "currently-selling" is to let you choose which of the permissions you'd currently like to sell.
+
+updater:
+  check: true
+
+permissions:
+  commands:
+    fly:
+      name: "&7Fly"
+      perm: fly.permission
+      cost: 2000.00
+      description: "&aFly around and &ckill &ayour enemies!"
+
+tooltip-styling:
+  name: "&a&lNAME &6■ "
+  description: "&a&lDescription &6■ &7"
+  cost: "&a&lCOST &6■ &7"
+
+command-styling:
+  prefix: "&6■ "
+  command-color: "&a{command}"
+
+currently-selling:
+- "example"
+
+messages:
+  buy: "&b[&7BuyPermissions&b] /bp buy <command>"
+  list: "&b[&7BuyPermissions&b] /bp list"
+  reload: "&b[&7BuyPermissions&b] /bp reload"
+  perm-added: "&b[&7BuyPermissions&b] &aSuccess! You bought the command &b{command}!"
+  new-balance: "&b[&7BuyPermissions&b] &aYour new balance is &b{balance}!"
+  not-for-sale: "&b[&7BuyPermissions&b] &cSorry! That command is either not valid or not for sale!"
+  list-commands: "&b[&7BuyPermissions&b] &aThe following commands that you can currently buy are:"
+  list-commands-end: "&&b[&7BuyPermissions&b] aRemember to hover over each one for more information!"
+  click-to-buy: "&b[&7BuyPermissions&b] &aWant to buy? Just click the command!"
+  already-have: "&b[&7BuyPermissions&b] &cSorry, you already have this permission!"
+  reload-success: "&b[&7BuyPermissions&b] &aConfiguration reloaded!"
