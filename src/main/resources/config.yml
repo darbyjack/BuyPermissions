@@ -51,7 +51,7 @@ messages:
   new-balance: "&b[&7BuyPermissions&b] &aYour new balance is &b{balance}!"
   not-for-sale: "&b[&7BuyPermissions&b] &cSorry! That command is either not valid or not for sale!"
   list-commands: "&b[&7BuyPermissions&b] &aThe following commands that you can currently buy are:"
-  list-commands-end: "&&b[&7BuyPermissions&b] aRemember to hover over each one for more information!"
+  list-commands-end: "&b[&7BuyPermissions&b] &aRemember to hover over each one for more information!"
   click-to-buy: "&b[&7BuyPermissions&b] &aWant to buy? Just click the command!"
   already-have: "&b[&7BuyPermissions&b] &cSorry, you already have this permission!"
   reload-success: "&b[&7BuyPermissions&b] &aConfiguration reloaded!"
