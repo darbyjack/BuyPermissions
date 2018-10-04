@@ -4,7 +4,3 @@ main: me.glaremasters.buypermissions.BuyPermissions
 softdepend: [Vault]
 authors: [blockslayer22]
 description: BuyPermissions
-
-commands:
-  bp:
-    description: Default help info

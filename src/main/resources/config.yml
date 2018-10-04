@@ -26,9 +26,6 @@
 
 # "currently-selling" is to let you choose which of the permissions you'd currently like to sell.
 
-updater:
-  check: true
-
 permissions:
   commands:
     fly:
@@ -50,9 +47,6 @@ currently-selling:
 - "example"
 
 messages:
-  buy: "&b[&7BuyPermissions&b] /bp buy <command>"
-  list: "&b[&7BuyPermissions&b] /bp list"
-  reload: "&b[&7BuyPermissions&b] /bp reload"
   perm-added: "&b[&7BuyPermissions&b] &aSuccess! You bought the command &b{command}!"
   new-balance: "&b[&7BuyPermissions&b] &aYour new balance is &b{balance}!"
   not-for-sale: "&b[&7BuyPermissions&b] &cSorry! That command is either not valid or not for sale!"
