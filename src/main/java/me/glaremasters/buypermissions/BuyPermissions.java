@@ -37,7 +37,7 @@ public final class BuyPermissions extends JavaPlugin {
 
         info("Checking for updates...");
         getServer().getScheduler().runTaskAsynchronously(this, new Runnable() {
-            SpigotUpdater updater = new SpigotUpdater(BuyPermissions.this, 48920);
+            SpigotUpdater updater = new SpigotUpdater(BuyPermissions.this, 52557);
             @Override
             public void run() {
                 updateCheck(updater);
