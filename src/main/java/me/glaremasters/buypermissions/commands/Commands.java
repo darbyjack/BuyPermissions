@@ -23,6 +23,8 @@ import static co.aikar.commands.ACFBukkitUtil.color;
 public class Commands extends BaseCommand {
 
     @Dependency private BuyPermissions bp;
+    @Dependency private Economy economy;
+    @Dependency private Permission perms;
 
     @Subcommand("list")
     @CommandPermission("bp.list")
@@ -51,32 +53,28 @@ public class Commands extends BaseCommand {
     @Subcommand("buy")
     @CommandPermission("bp.buy")
     public void onBuy(Player player, String permission) {
-        FileConfiguration c = bp.getConfig();
-        Economy e = bp.getEconomy();
-        Permission p = bp.getPermissions();
+        FileConfiguration config = bp.getConfig();
 
-
-        if (!c.getStringList("currently-selling").contains(permission)) {
-            player.sendMessage(color(c.getString("messages.not-for-sale")));
+        if (!config.getStringList("currently-selling").contains(permission)) {
+            player.sendMessage(color(config.getString("messages.not-for-sale")));
             return;
         }
 
         String buyCommand = permission.toLowerCase();
-        String pNode = c.getString("permissions.commands." + buyCommand + ".perm");
-        double cost = c.getDouble("permissions.commands." + buyCommand + ".cost");
+        String pNode = config.getString("permissions.commands." + buyCommand + ".perm");
+        double cost = config.getDouble("permissions.commands." + buyCommand + ".cost");
         if (player.hasPermission(pNode)) {
-            player.sendMessage(color(c.getString("messages.already-have")));
+            player.sendMessage(color(config.getString("messages.already-have")));
             return;
         }
 
-        double balance = e.getBalance(player);
+        double balance = economy.getBalance(player);
         if (balance >= cost) {
-            e.withdrawPlayer(player, cost);
+            economy.withdrawPlayer(player, cost);
+            perms.playerAdd(null, player, pNode);
 
-            p.playerAdd(null, player, pNode);
-
-            player.sendMessage(color(c.getString("messages.perm-added").replace("{command}", permission)));
-            player.sendMessage(color(c.getString("messages.new-balance").replace("{balance}", String.valueOf(balance))));
+            player.sendMessage(color(config.getString("messages.perm-added").replace("{command}", permission)));
+            player.sendMessage(color(config.getString("messages.new-balance").replace("{balance}", String.valueOf(balance))));
         }
     }
 

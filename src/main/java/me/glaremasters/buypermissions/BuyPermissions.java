@@ -1,6 +1,6 @@
 package me.glaremasters.buypermissions;
 
-import co.aikar.commands.BukkitCommandManager;
+import co.aikar.commands.PaperCommandManager;
 import me.glaremasters.buypermissions.commands.Commands;
 import me.glaremasters.buypermissions.updater.SpigotUpdater;
 import net.milkbowl.vault.economy.Economy;
@@ -15,8 +15,8 @@ public final class BuyPermissions extends JavaPlugin {
 
     private static Economy econ = null;
     private static Permission perms = null;
-    private BukkitCommandManager manager;
-    private String logPrefix = "&b[&7BuyPermissions&b]&r ";
+    private PaperCommandManager manager;
+    private final String logPrefix = "&b[&7BuyPermissions&b]&r ";
 
     @Override
     public void onEnable() {
@@ -30,14 +30,17 @@ public final class BuyPermissions extends JavaPlugin {
         info("Hooked into Economy and Permissions!");
 
         info("Loading Commands...");
-        this.manager = new BukkitCommandManager(this);
+        this.manager = new PaperCommandManager(this);
+        manager.registerDependency(Permission.class, perms);
+        manager.registerDependency(Economy.class, econ);
         manager.enableUnstableAPI("help");
         manager.registerCommand(new Commands());
-        info("Loaded " + String.valueOf(amount) + " commands to sell!");
+        info("Loaded " + amount + " commands to sell!");
 
         info("Checking for updates...");
         getServer().getScheduler().runTaskAsynchronously(this, new Runnable() {
-            SpigotUpdater updater = new SpigotUpdater(BuyPermissions.this, 52557);
+            final SpigotUpdater updater = new SpigotUpdater(BuyPermissions.this, 52557);
+
             @Override
             public void run() {
                 updateCheck(updater);
@@ -90,6 +93,7 @@ public final class BuyPermissions extends JavaPlugin {
 
     /**
      * Useful tool for colorful texts to console
+     *
      * @param msg the msg you want to log
      */
     public void info(String msg) {
